@@ -20,7 +20,8 @@ public class Program {
 		
 		try {
 			conn = DB.getConnection();
-			/*
+			
+			// exemplo1 - inserindo um funcionario
 			pst = conn.prepareStatement(
 					"INSERT INTO seller "
 					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
@@ -33,9 +34,10 @@ public class Program {
 			pst.setDate(3, new java.sql.Date(sdf.parse("22/04/1985").getTime()));
 			pst.setDouble(4, 3000.0);
 			pst.setInt(5, 4);
-			*/
 			
+			/* exemplo 2 - inserindo mais dois departamentos, mas só os nomes.
 			pst = conn.prepareStatement("INSERT INTO department (Name) VALUES ('D1'), ('D2')", Statement.RETURN_GENERATED_KEYS);
+			*/
 			
 			int rowsAffected = pst.executeUpdate();			
 			
@@ -50,9 +52,9 @@ public class Program {
 			}
 		} catch (SQLException e) {
 			e.getStackTrace();
-		} /*catch (ParseException e) {
+		} catch (ParseException e) {
 			e.getStackTrace();
-		} */
+		} 
 		finally {
 			DB.closeStatement(pst);
 			DB.closeConnection();
